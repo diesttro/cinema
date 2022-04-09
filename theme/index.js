@@ -16,7 +16,7 @@ const styles = {
 
 const colors = {
   black: '#0D0D0D',
-  white: '#FBFBFB',
+  white: '#F0F0F0',
 };
 
 const fonts = {
