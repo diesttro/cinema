@@ -5,7 +5,7 @@ const handler = async (request, response) => {
     );
     const movies = await moviesResponse.json();
 
-    response.status(200).json({ trending: movies?.results });
+    response.status(200).json({ data: movies?.results });
   } catch (error) {
     console.log(error);
   }
