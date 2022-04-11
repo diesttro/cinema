@@ -1,5 +1,6 @@
 import Image from 'next/image';
-import { Box, Skeleton } from '@chakra-ui/react';
+import Link from 'next/link';
+import { Skeleton, Link as Anchor } from '@chakra-ui/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
@@ -21,14 +22,16 @@ const MovieSlider = ({ items }) => {
       {items.length
         ? items.map((item) => (
             <SwiperSlide key={item.id}>
-              <Box borderRadius="2xl" overflow="hidden">
-                <Image
-                  alt={item.title}
-                  src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                  width="240px"
-                  height="360px"
-                />
-              </Box>
+              <Link href={`/movie/${item.id}`} passHref>
+                <Anchor display="flex" borderRadius="2xl" overflow="hidden">
+                  <Image
+                    alt={item.title}
+                    src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
+                    width="240px"
+                    height="360px"
+                  />
+                </Anchor>
+              </Link>
             </SwiperSlide>
           ))
         : Array(5)
