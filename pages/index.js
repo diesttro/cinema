@@ -41,7 +41,7 @@ const Home = ({ trending, genres, popular }) => {
   );
 };
 
-const getStaticProps = async (context) => {
+const getServerSideProps = async () => {
   const results = await Promise.allSettled([getTrending(), getGenres(), getPopular()]);
   const [trending, genres, popular] = results.map((result) => result.value);
 
@@ -51,4 +51,4 @@ const getStaticProps = async (context) => {
 };
 
 export default Home;
-export { getStaticProps };
+export { getServerSideProps };
