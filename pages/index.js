@@ -3,6 +3,7 @@ import { getTrending } from './api/trending';
 import { getPopular } from './api/popular';
 import { getGenres } from './api/genres';
 import MovieSlider from '../components/MovieSlider';
+import MovieGenres from '../components/MovieGenres';
 
 const Home = ({ trending, genres, popular }) => {
   return (
@@ -23,13 +24,7 @@ const Home = ({ trending, genres, popular }) => {
         <Heading size="lg" py={8}>
           Genres
         </Heading>
-        <Box>
-          {genres.map((genre) => (
-            <Tag key={genre.id} mb={4} mr={4} px={4} py={2}>
-              {genre.name}
-            </Tag>
-          ))}
-        </Box>
+        <MovieGenres items={genres} />
       </Box>
       <Box my={12}>
         <Heading size="lg" py={8}>
