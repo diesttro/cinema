@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button, Tag, Link as Anchor } from '@chakra-ui/react';
+import { Tag, Link as Anchor } from '@chakra-ui/react';
 
 const MovieGenres = ({ items }) => {
   return items.map((item) => (

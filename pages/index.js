@@ -1,9 +1,9 @@
-import { Container, Heading, Text, Box, Tag } from '@chakra-ui/react';
-import { getTrending } from './api/trending';
-import { getPopular } from './api/popular';
-import { getGenres } from './api/genres';
-import MovieSlider from '../components/MovieSlider';
-import MovieGenres from '../components/MovieGenres';
+import { Heading, Text, Box } from '@chakra-ui/react';
+import { getTrending } from 'pages/api/trending';
+import { getPopular } from 'pages/api/popular';
+import { getGenres } from 'pages/api/genres';
+import MovieSlider from 'components/MovieSlider';
+import MovieGenres from 'components/MovieGenres';
 
 const Home = ({ trending, genres, popular }) => {
   return (
