@@ -7,10 +7,7 @@ import MovieGenres from '../components/MovieGenres';
 
 const Home = ({ trending, genres, popular }) => {
   return (
-    <Container maxW="container.xl" py={8}>
-      <Heading as="h1" size="2xl" py={8}>
-        Cinema
-      </Heading>
+    <>
       <Text maxW="400px" mt={-6}>
         Take a quick look at trending and popular movies, or discover movies by genre
       </Text>
@@ -32,7 +29,7 @@ const Home = ({ trending, genres, popular }) => {
         </Heading>
         <MovieSlider items={popular} />
       </Box>
-    </Container>
+    </>
   );
 };
 
