@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper';
 import 'swiper/css';
 
-const MovieSlider = ({ items, controls }) => {
+const Slider = ({ items, controls }) => {
   return (
     <Swiper
       breakpoints={{
@@ -50,4 +50,4 @@ const MovieSlider = ({ items, controls }) => {
   );
 };
 
-export default MovieSlider;
+export default Slider;

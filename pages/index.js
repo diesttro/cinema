@@ -1,15 +1,13 @@
-import { Heading, Text, Box, Flex, IconButton, Spacer } from '@chakra-ui/react';
-import { ArrowBackIcon, ArrowForwardIcon } from '@chakra-ui/icons';
-import { getTrending } from 'pages/api/trending';
+import { Heading, Text, Box, Flex, Spacer } from '@chakra-ui/react';
 import { getUpcoming } from 'pages/api/upcoming';
+import { getTrending } from 'pages/api/trending';
 import { getGenres } from 'pages/api/genres';
-import MovieSlider from 'components/MovieSlider';
-import MovieGenres from 'components/MovieGenres';
-import useSliderControls from 'hooks/useSliderControls';
+import Slider, { Controls, useSliderControls } from 'components/Movies/Slider';
+import Genres from 'components/Movies/Genres';
 
-const Home = ({ trending, genres, upcoming }) => {
-  const [upcomingControls, setUpcomingControl] = useSliderControls();
-  const [trendingControls, setTrendingControl] = useSliderControls();
+const Home = ({ upcoming, trending, genres }) => {
+  const [upcomingControls, prevUpcoming, nextUpcoming] = useSliderControls();
+  const [trendingControls, prevTrending, nextTrending] = useSliderControls();
 
   return (
     <>
@@ -23,26 +21,16 @@ const Home = ({ trending, genres, upcoming }) => {
           </Heading>
           <Spacer />
           <Box mt={4}>
-            <IconButton
-              ref={setUpcomingControl('prev')}
-              aria-label="Prev"
-              icon={<ArrowBackIcon />}
-              mr={1}
-            />
-            <IconButton
-              ref={setUpcomingControl('next')}
-              aria-label="Next"
-              icon={<ArrowForwardIcon />}
-            />
+            <Controls prev={prevUpcoming} next={nextUpcoming} />
           </Box>
         </Flex>
-        <MovieSlider items={upcoming} controls={upcomingControls} />
+        <Slider items={upcoming} controls={upcomingControls} />
       </Box>
       <Box mt={12} mb={-4}>
         <Heading size="lg" py={8}>
           Genres
         </Heading>
-        <MovieGenres items={genres} />
+        <Genres items={genres} />
       </Box>
       <Box my={12}>
         <Flex alignItems="center">
@@ -51,31 +39,21 @@ const Home = ({ trending, genres, upcoming }) => {
           </Heading>
           <Spacer />
           <Box mt={4}>
-            <IconButton
-              ref={setTrendingControl('prev')}
-              aria-label="Prev"
-              icon={<ArrowBackIcon />}
-              mr={1}
-            />
-            <IconButton
-              ref={setTrendingControl('next')}
-              aria-label="Next"
-              icon={<ArrowForwardIcon />}
-            />
+            <Controls prev={prevTrending} next={nextTrending} />
           </Box>
         </Flex>
-        <MovieSlider items={trending} controls={trendingControls} />
+        <Slider items={trending} controls={trendingControls} />
       </Box>
     </>
   );
 };
 
 const getServerSideProps = async () => {
-  const results = await Promise.allSettled([getTrending(), getGenres(), getUpcoming()]);
-  const [trending, genres, upcoming] = results.map((result) => result.value);
+  const results = await Promise.allSettled([getUpcoming(), getTrending(), getGenres()]);
+  const [upcoming, trending, genres] = results.map((result) => result.value);
 
   return {
-    props: { trending, genres, upcoming },
+    props: { upcoming, trending, genres },
   };
 };
 
