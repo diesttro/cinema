@@ -48,14 +48,15 @@ const Home = ({ upcoming, trending, genres }) => {
   );
 };
 
-const getServerSideProps = async () => {
+const getStaticProps = async () => {
   const results = await Promise.allSettled([getUpcoming(), getTrending(), getGenres()]);
   const [upcoming, trending, genres] = results.map((result) => result.value);
 
   return {
     props: { upcoming, trending, genres },
+    revalidate: 1 * 24 * 60 * 60,
   };
 };
 
 export default Home;
-export { getServerSideProps };
+export { getStaticProps };
