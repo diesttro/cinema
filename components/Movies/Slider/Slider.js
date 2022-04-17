@@ -9,12 +9,16 @@ const Slider = ({ items, controls }) => {
   return (
     <Swiper
       breakpoints={{
+        320: {
+          slidesPerView: 2,
+          spaceBetween: 8,
+        },
         640: {
           slidesPerView: 3,
           spaceBetween: 16,
         },
-        1280: {
-          slidesPerView: 5,
+        960: {
+          slidesPerView: 4,
           spaceBetween: 24,
         },
       }}
@@ -32,8 +36,8 @@ const Slider = ({ items, controls }) => {
                   <Image
                     alt={item.title}
                     src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-                    width="240px"
-                    height="360px"
+                    width="300px"
+                    height="450px"
                   />
                 </Link>
               </NextLink>
