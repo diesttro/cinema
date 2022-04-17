@@ -1,15 +1,13 @@
 import NextLink from 'next/link';
-import { Tag, TagLabel, Link } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 
 const Genres = ({ items }) => {
   return items.map((item) => (
-    <Tag key={item.id} mb={4} mr={4} px={4} py={2}>
-      <NextLink href={`/genre/${item.id}`} passHref>
-        <Link>
-          <TagLabel>{item.name}</TagLabel>
-        </Link>
-      </NextLink>
-    </Tag>
+    <NextLink href={`/genre/${item.id}`} passHref>
+      <Button as="a" fontWeight="normal" size="sm" mr={2} mb={2}>
+        {item.name}
+      </Button>
+    </NextLink>
   ));
 };
 
