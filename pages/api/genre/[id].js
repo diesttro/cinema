@@ -1,6 +1,6 @@
-const getGenre = async (id) => {
+const getGenre = async (id, page = 1) => {
   const dataResponse = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?with_genres=${id}&api_key=${process.env.API_KEY}`
+    `https://api.themoviedb.org/3/discover/movie?with_genres=${id}&page=${page}&api_key=${process.env.API_KEY}`
   );
   const data = await dataResponse.json();
 
@@ -9,8 +9,8 @@ const getGenre = async (id) => {
 
 const handler = async (request, response) => {
   try {
-    const { id } = request.query;
-    const data = await getGenre(id);
+    const { id, page } = request.query;
+    const data = await getGenre(id, page);
 
     response.status(200).json({ data });
   } catch (error) {

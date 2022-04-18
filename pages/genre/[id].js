@@ -1,22 +1,39 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { SimpleGrid, Box, Link, Skeleton } from '@chakra-ui/react';
 
 const Movies = () => {
-  const { query } = useRouter();
   const [items, setItems] = useState([]);
+  const { query } = useRouter();
+  const page = useRef(1);
+
+  const getGenreMovies = async () => {
+    const response = await fetch(`/api/genre/${query.id}?page=${page.current}`);
+    const result = await response.json();
+
+    setItems((value) => [...value, ...result?.data]);
+  };
+
+  const loadMore = () => {
+    if (window.scrollY + window.innerHeight >= document.documentElement.offsetHeight) {
+      page.current++;
+
+      getGenreMovies();
+    }
+  };
 
   useEffect(() => {
-    const getGenreMovies = async () => {
-      const response = await fetch(`/api/genre/${query.id}`);
-      const result = await response.json();
+    if (query?.id) {
+      document.addEventListener('scroll', loadMore);
 
-      setItems(result?.data);
+      getGenreMovies();
+    }
+
+    return () => {
+      document.removeEventListener('scroll', loadMore);
     };
-
-    if (query?.id) getGenreMovies();
   }, [query]);
 
   return (
