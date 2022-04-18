@@ -5,7 +5,7 @@ import { getGenre } from '../api/genre/[id]';
 
 const Movies = ({ items }) => {
   return (
-    <SimpleGrid columns={[2, 3, 4]} gap={[0, 1, 2]}>
+    <SimpleGrid columns={[2, 3, 4]} gap={[0, 1, 2]} mt={12}>
       {items.map((item) => (
         <Box key={item.id} mr={4} mb={4}>
           <NextLink href={`/movie/${item.id}`} passHref>

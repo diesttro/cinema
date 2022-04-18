@@ -6,6 +6,7 @@ const Movie = ({ item }) => {
   return (
     <SimpleGrid
       columns={1}
+      mt={12}
       sx={{
         '@media only screen and (min-width: 50rem)': {
           gridTemplateColumns: 'minmax(0, 300px) 1fr',
