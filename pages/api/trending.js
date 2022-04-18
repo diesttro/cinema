@@ -1,7 +1,8 @@
 const getTrending = async () => {
-  const dataResponse = await fetch(
-    `https://api.themoviedb.org/3/trending/movie/day?api_key=${process.env.API_KEY}`
-  );
+  const url = new URL('https://api.themoviedb.org/3/trending/movie/day');
+  url.searchParams.append('api_key', process.env.API_KEY);
+
+  const dataResponse = await fetch(url);
   const data = await dataResponse.json();
 
   return data?.results;

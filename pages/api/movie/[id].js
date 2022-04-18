@@ -1,7 +1,8 @@
 const getMovie = async (id) => {
-  const dataResponse = await fetch(
-    `https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.API_KEY}`
-  );
+  const url = new URL(`https://api.themoviedb.org/3/movie/${id}`);
+  url.searchParams.append('api_key', process.env.API_KEY);
+
+  const dataResponse = await fetch(url);
   const data = await dataResponse.json();
 
   return data;
