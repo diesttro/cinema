@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
+import { debounce } from 'utils';
 
 const InfiniteScroll = ({ onReachEnd, loadingStatus, children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const loading = useRef(false);
 
-  const loadMore = async () => {
+  const loadMore = debounce(async () => {
     if (window.scrollY + window.innerHeight >= document.documentElement.offsetHeight) {
       if (loading.current) return;
 
@@ -16,7 +17,7 @@ const InfiniteScroll = ({ onReachEnd, loadingStatus, children }) => {
       setIsLoading(false);
       loading.current = false;
     }
-  };
+  }, 250);
 
   useEffect(() => {
     document.addEventListener('scroll', loadMore);
