@@ -24,7 +24,7 @@ const Movies = () => {
   }, [query]);
 
   return (
-    <SimpleGrid columns={[2, 3, 4]} gap={[2, 4, 6]} mt={12}>
+    <SimpleGrid columns={[2, 3, 4]} gap={[2, 4, 6]} my={12}>
       <InfiniteScroll
         onReachEnd={getGenreMovies}
         loadingStatus={Array(8)
