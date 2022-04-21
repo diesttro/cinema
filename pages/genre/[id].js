@@ -27,6 +27,7 @@ const Movies = () => {
     <SimpleGrid columns={[2, 3, 4]} gap={[2, 4, 6]} my={12}>
       <InfiniteScroll
         onReachEnd={getGenreMovies}
+        offset={100}
         loadingStatus={Array(8)
           .fill()
           .map((_, index) => (
