@@ -11,7 +11,7 @@ const Home = ({ upcoming, trending, genres }) => {
 
   return (
     <>
-      <Text fontSize="lg" maxWidth="26.5rem" mt={-6}>
+      <Text maxWidth="24rem" mt={-4}>
         Take a look at upcoming and trending movies, or discover it by genre
       </Text>
       <Box my={12}>
