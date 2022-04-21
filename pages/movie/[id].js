@@ -1,6 +1,15 @@
 import Image from 'next/image';
 import { Heading, SimpleGrid, Center, Text, Box } from '@chakra-ui/react';
-import { getMovie } from '../api/movie/[id]';
+import Genres from 'components/Movies/Genres';
+import { getMovie } from 'pages/api/movie/[id]';
+import { splitDateString, timeFromMinutes } from 'utils';
+
+const formatRuntime = (hours, minutes) => {
+  const hoursString = `${hours} h`;
+  const minutesString = `${String(minutes).padStart(2, 0)} min`;
+
+  return minutes > 0 ? `${hoursString} ${minutesString}` : hoursString;
+};
 
 const Movie = ({ item }) => {
   return (
@@ -28,6 +37,13 @@ const Movie = ({ item }) => {
         <Heading size="lg" py={8}>
           {item.title}
         </Heading>
+        <Box display="flex" alignItems="center" mt={-6}>
+          <Text textTransform="uppercase">{formatRuntime(...timeFromMinutes(item.runtime))}</Text>
+          <Text ml={4}>{splitDateString(item.release_date).year}</Text>
+        </Box>
+        <Box my={4}>
+          <Genres items={item.genres} />
+        </Box>
         <Text>{item.overview}</Text>
       </Box>
     </SimpleGrid>
