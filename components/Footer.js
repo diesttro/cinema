@@ -1,17 +1,16 @@
-import { Box, Link, Text } from '@chakra-ui/react';
+import { Center, Link, Text } from '@chakra-ui/react';
 
 const Footer = () => {
   return (
-    <Box textAlign="center" py={8}>
-      <Text>
-        A personal project made to learn, see the source code on{' '}
+    <Center textAlign="center" py={8}>
+      <Text fontSize="sm" maxWidth="32rem">
+        A personal project made to learn, you can see the source code on{' '}
         <Link href="https://github.com/diesttro/cinema" target="_blank" fontWeight="bold">
           GitHub
         </Link>
-        .
+        . All data comes from TMDB.
       </Text>
-      <Text>All data comes from TMDB.</Text>
-    </Box>
+    </Center>
   );
 };
 
