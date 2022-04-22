@@ -6,13 +6,18 @@ import { getMovie } from 'pages/api/movie/[id]';
 import { splitDateString, timeFromMinutes } from 'utils';
 
 const formatRuntime = (hours, minutes) => {
-  const hoursString = `${hours} h`;
-  const minutesString = `${String(minutes).padStart(2, 0)} min`;
+  const hoursString = hours > 0 ? `${hours} h` : '';
+  const minutesString = minutes > 0 ? `${minutes} min` : '';
+  const runtiemString = `${hoursString} ${minutesString}`;
 
-  return minutes > 0 ? `${hoursString} ${minutesString}` : hoursString;
+  return runtiemString.trim();
 };
 
 const Movie = ({ item }) => {
+  const [hours, minutes] = timeFromMinutes(item.runtime);
+  const hasRuntime = hours > 0 || minutes > 0;
+  const releaseYear = splitDateString(item.release_date).year;
+
   return (
     <>
       <Head>
@@ -43,8 +48,12 @@ const Movie = ({ item }) => {
             {item.title}
           </Heading>
           <Box display="flex" alignItems="center" mt={-6}>
-            <Text textTransform="uppercase">{formatRuntime(...timeFromMinutes(item.runtime))}</Text>
-            <Text ml={4}>{splitDateString(item.release_date).year}</Text>
+            {hasRuntime && (
+              <Text textTransform="uppercase" mr={4}>
+                {formatRuntime(hours, minutes)}
+              </Text>
+            )}
+            {releaseYear && <Text mr={4}>{releaseYear}</Text>}
           </Box>
           <Box my={4}>
             <Genres items={item.genres} />

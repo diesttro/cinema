@@ -8,7 +8,7 @@ const debounce = (callback, time) => {
 };
 
 const splitDateString = (string) => {
-  const [year, month, day] = string?.match(/([0-9]+)/g);
+  const [year, month, day] = string?.match(/([0-9]+)/g) ?? [];
   const datePieces = { year, month, day };
 
   return datePieces;
