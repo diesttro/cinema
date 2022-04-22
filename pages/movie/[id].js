@@ -13,10 +13,13 @@ const formatRuntime = (hours, minutes) => {
   return runtiemString.trim();
 };
 
+const formatCountries = (countries) => countries?.map((country) => country.iso_3166_1).join(', ');
+
 const Movie = ({ item }) => {
   const [hours, minutes] = timeFromMinutes(item.runtime);
   const hasRuntime = hours > 0 || minutes > 0;
   const releaseYear = splitDateString(item.release_date).year;
+  const countries = formatCountries(item.production_countries);
 
   return (
     <>
@@ -54,6 +57,7 @@ const Movie = ({ item }) => {
               </Text>
             )}
             {releaseYear && <Text mr={4}>{releaseYear}</Text>}
+            {countries.length && <Text>{countries}</Text>}
           </Box>
           <Box my={4}>
             <Genres items={item.genres} />
