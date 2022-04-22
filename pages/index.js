@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import { Heading, Text, Box, Flex, Spacer } from '@chakra-ui/react';
 import { getUpcoming } from 'pages/api/upcoming';
 import { getTrending } from 'pages/api/trending';
@@ -11,6 +12,9 @@ const Home = ({ upcoming, trending, genres }) => {
 
   return (
     <>
+      <Head>
+        <title>Cinema</title>
+      </Head>
       <Text maxWidth="24rem" mt={-4}>
         Take a look at upcoming and trending movies, or discover it by genre
       </Text>
