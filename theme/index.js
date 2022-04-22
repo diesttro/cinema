@@ -1,8 +1,26 @@
 import { extendTheme } from '@chakra-ui/react';
 
+const colors = {
+  black: '#0A0A0A',
+  white: '#E0E0E0',
+};
+
+const components = {
+  Heading: {
+    baseStyle: {
+      fontWeight: 'normal',
+    },
+  },
+};
+
 const config = {
   initialColorMode: 'dark',
   useSystemColorMode: false,
+};
+
+const fonts = {
+  heading: '"DM Serif Display", serif',
+  body: 'Poppins, sans-serif',
 };
 
 const styles = {
@@ -14,14 +32,4 @@ const styles = {
   },
 };
 
-const colors = {
-  black: '#0D0D0D',
-  white: '#F0F0F0',
-};
-
-const fonts = {
-  heading: '"DM Serif Display", serif',
-  body: 'Poppins, sans-serif',
-};
-
-export default extendTheme({ config, styles, colors, fonts });
+export default extendTheme({ colors, components, config, fonts, styles });
