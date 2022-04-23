@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { Heading, SimpleGrid, Center, Text, Box } from '@chakra-ui/react';
 import Genres from 'components/Movies/Genres';
-import { getMovie } from 'pages/api/movie/[id]';
+import { getMovie } from 'pages/api/movies/[id]';
 import { splitDateString, timeFromMinutes } from 'utils';
 
 const formatRuntime = (hours, minutes) => {

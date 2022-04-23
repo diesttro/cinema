@@ -11,7 +11,7 @@ const Movies = () => {
   const page = useRef(1);
 
   const getGenreMovies = async () => {
-    const response = await fetch(`/api/genre/${query.id}?page=${page.current++}`);
+    const response = await fetch(`/api/genres/${query.id}?page=${page.current++}`);
     const result = await response.json();
 
     setItems((items) => [...items, ...result?.data]);
@@ -37,7 +37,7 @@ const Movies = () => {
         {items.length
           ? items.map((item) => (
               <Box key={item.id}>
-                <NextLink href={`/movie/${item.id}`} passHref>
+                <NextLink href={`/movies/${item.id}`} passHref>
                   <Link display="flex" borderRadius="2xl" overflow="hidden">
                     <Image
                       alt={item.title}

@@ -30,7 +30,7 @@ const Slider = ({ items, controls }) => {
     >
       {items.map((item) => (
         <SwiperSlide key={item.id}>
-          <NextLink href={`/movie/${item.id}`} passHref>
+          <NextLink href={`/movies/${item.id}`} passHref>
             <Link display="flex" borderRadius="2xl" overflow="hidden">
               <Image
                 alt={item.title}
