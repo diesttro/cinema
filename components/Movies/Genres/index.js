@@ -3,7 +3,7 @@ import { Button } from '@chakra-ui/react';
 
 const Genres = ({ items }) => {
   return items.map((item) => (
-    <NextLink href={`/genres/${item.id}`} passHref>
+    <NextLink key={item.id} href={`/genres/${item.id}`} passHref>
       <Button as="a" fontWeight="normal" fontSize="sm" mr={2} mb={2}>
         {item.name}
       </Button>
