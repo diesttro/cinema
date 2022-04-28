@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "next dev",
+    "debug": "cross-env NODE_OPTIONS='--inspect' next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -22,5 +23,8 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "swiper": "^8.1.0"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }
