@@ -40,6 +40,7 @@ const Movie = ({ item }) => {
               src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
               width="300px"
               height="450px"
+              unoptimized={Boolean(process.env.NEXT_PUBLIC_UNOPTIMIZE_IMAGE)}
             />
           </Box>
         </Center>
