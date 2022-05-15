@@ -68,9 +68,14 @@ const Movie = ({ item }) => {
 
 const getServerSideProps = async (context) => {
   const { params } = context;
-  const item = await getMovie(params.id);
 
-  return { props: { item } };
+  try {
+    const item = await getMovie(params.id);
+
+    return { props: { item } };
+  } catch {
+    return { notFound: true };
+  }
 };
 
 export default Movie;
